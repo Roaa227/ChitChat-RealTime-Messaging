@@ -19,3 +19,5 @@ ChitCat is a real-time messaging chat application built with modern front-end te
 - **React Router**: For managing app navigation.
 
 
+You can find the server side code of the Project by this link :
+- https://github.com/RanaMohamad21/ChitChat-RealTime-Messaging
