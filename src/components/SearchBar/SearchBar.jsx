@@ -18,7 +18,7 @@ export const SearchBar = ({ setFilterType, setShowUnread, showUnread }) => {
     return (
         <div className={`${styles.back} flex-fill`}>
             <div className={`${styles.con}`}>
-                <div className={`${styles.searchbar} mx-4`}>
+                <div className={`${styles.searchbar} my-0`}>
                     <input type="text" placeholder="Search" className={`${styles.searchinput}`} />
                     <button className={`${styles.button} me-2`}>
                         <i className={`fa fa-search `}></i>

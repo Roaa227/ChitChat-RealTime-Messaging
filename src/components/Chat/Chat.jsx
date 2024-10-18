@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Chat.module.css';
-import Messages from '../Messages/Messages'; // Ensure this is the correct path to your Messages component
+import Messages from '../Messages/Messages'; 
 
 const Chat = ({ messages, selectedContact, setMessages }) => {
     const [input, setInput] = useState('');
@@ -9,8 +9,8 @@ const Chat = ({ messages, selectedContact, setMessages }) => {
         e.preventDefault();
         if (input) {
             const newMessage = { text: input, isUser: true }; 
-            setMessages((prevMessages) => [...prevMessages, newMessage]); // Update messages state
-            setInput(''); // Clear the input field
+            setMessages((prevMessages) => [...prevMessages, newMessage]); 
+            setInput(''); 
         }
     };
 
