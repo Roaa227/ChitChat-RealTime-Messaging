@@ -36,8 +36,8 @@ const ProfileModal = ({ isOpen, onClose }) => {
                         <div className="modal-body d-flex flex-column align-items-center text-center">
                             <img src="/avatar.png" alt="Profile" style={{ width: '100px', borderRadius: '50%' }} />
                             <h3>{user.name}</h3>
-                            <p>{user.Email}</p>
-                            <p>Bio: {user.Bio}</p>
+                            <h5>{user.Email}</h5>
+                            <h5>Bio: {user.Bio}</h5>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn" onClick={onClose} style={{backgroundColor:'#DFDCF2', color:'#9049BF'}}>
