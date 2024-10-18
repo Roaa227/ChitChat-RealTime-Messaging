@@ -1,12 +1,21 @@
-<<<<<<< HEAD
-# React + Vite
+![image](https://github.com/user-attachments/assets/8c7a6267-a05f-4402-a4a9-cd00e7c86ce4)
+# React + Vite Real-Time Messaging project
+ChitCat is a real-time messaging chat application built with modern front-end technologies. It allows users to communicate with each other seamlessly through direct messages and group chats. The app is optimized for performance, responsiveness, and user-friendly experience.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
 
-Currently, two official plugins are available:
+- **Real-Time Messaging**: Send and receive messages instantly with no refresh needed.
+- **Group and Direct Chats**: Communicate either one-on-one or in groups.
+- **Search and Filter**: Find conversations and filter messages by groups, or unread status.
+- **Responsive Design**: Optimized for all screen sizes.
+- **Profile Management**: Allows users to manage and update their profile.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-=======
-# ChitChat-RealTime-Messaging
->>>>>>> bb146f8c92d069d8948fc77eb85ed22090c98db2
+## Technologies Used
+
+- **React**: For building the UI components.
+- **Socket.io**: For handling real-time communication.
+- **Bootstrap**: For responsive design and styling.
+- **CSS**: Custom styles to make the app look good.
+- **React Router**: For managing app navigation.
+
+
