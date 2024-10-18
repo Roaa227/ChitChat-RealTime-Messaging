@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/8c7a6267-a05f-4402-a4a9-cd00e7c86ce4)
+
 # React + Vite Real-Time Messaging project
 ChitCat is a real-time messaging chat application built with modern front-end technologies. It allows users to communicate with each other seamlessly through direct messages and group chats. The app is optimized for performance, responsiveness, and user-friendly experience.
 
