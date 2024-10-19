@@ -41,7 +41,7 @@ export const Signup = () => {
             value={formData.userName}
             onChange={handleChange}
           />
-          {/* {errors.userName && <p className=" error">{errors.userName}</p>} */}
+          {errors.userName && <p >{errors.userName}</p>}
           <input
             type="email"
             name="email"
@@ -49,7 +49,7 @@ export const Signup = () => {
             value={formData.email}
             onChange={handleChange}
           />
-          {/* {errors.email && <p className=" error">{errors.email}</p>} */}
+          {errors.email && <p >{errors.email}</p>}
           <input
             type="password"
             name="password"
@@ -57,7 +57,7 @@ export const Signup = () => {
             value={formData.password}
             onChange={handleChange}
           />
-          {/* {errors.password && <p className=" error">{errors.password}</p>} */}
+          {errors.password && <p >{errors.password}</p>}
           <button type="submit">Sign Up</button>
         </form>
         <p>
