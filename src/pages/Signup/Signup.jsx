@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Signup.css';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Signup.css";
+import useSignup from "../../hooks/useSignup";
 
 export const Signup = () => {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
+    userName: "",
+    email: "",
+    password: "",
+  });
+
+  const { loading, signup } = useSignup();
+  const [errors, setErrors] = useState({
+    userName: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -16,19 +24,24 @@ export const Signup = () => {
       [name]: value,
     });
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signup(formData, setErrors);
+  };
 
   return (
     <div className="signup-form-container">
       <div className="signup-form">
         <h2>Sign Up</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
-            name="username"
+            name="userName"
             placeholder="Username"
-            value={formData.username}
+            value={formData.userName}
             onChange={handleChange}
           />
+          {/* {errors.userName && <p className=" error">{errors.userName}</p>} */}
           <input
             type="email"
             name="email"
@@ -36,6 +49,7 @@ export const Signup = () => {
             value={formData.email}
             onChange={handleChange}
           />
+          {/* {errors.email && <p className=" error">{errors.email}</p>} */}
           <input
             type="password"
             name="password"
@@ -43,6 +57,7 @@ export const Signup = () => {
             value={formData.password}
             onChange={handleChange}
           />
+          {/* {errors.password && <p className=" error">{errors.password}</p>} */}
           <button type="submit">Sign Up</button>
         </form>
         <p>
