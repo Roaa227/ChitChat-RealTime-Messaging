@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import ProfileModal from '../ProfileModal/ProfileModal'; // Import the ProfileModal
 import styles from './Nav.module.css';
+import useLogout from '../../hooks/useLogout';
 
 export const Navbar = () => {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
-
+  const {loading, logout} = useLogout();
   const handleProfileClick = () => {
     setIsProfileModalOpen(true); // Open the modal when profile icon is clicked
   };
@@ -12,6 +13,7 @@ export const Navbar = () => {
   const handleCloseModal = () => {
     setIsProfileModalOpen(false); // Close the modal when clicking close button
   };
+
 
   return (
     <>
@@ -28,7 +30,7 @@ export const Navbar = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="#" onClick={logout}>
               <i className={`${styles.icon} fa-solid fa-right-from-bracket`}></i>
             </a>
           </li>
