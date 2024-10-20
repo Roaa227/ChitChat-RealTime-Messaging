@@ -22,8 +22,8 @@ const useSignup = () => {
         body: JSON.stringify({ userName, email, password }),
       });
 
-      console.log("Kellow");
       const data = await res.json();
+      
       if (data.errors) {
         setErrors(data.errors);
         return;
@@ -33,7 +33,6 @@ const useSignup = () => {
       // Save token:
       localStorage.setItem("authUser", JSON.stringify(data.token));
       setAuthUser(data.token);
-
     } catch (error) {
       // Handle any other unexpected errors that may occur
       alert(error.message);
