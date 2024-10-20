@@ -6,11 +6,15 @@ export const useAuthContext = () => {
   return useContext(AuthContext);
 };
 export const AuthContextProvider = ({ children }) => {
+  const storedAuthUser = localStorage.getItem("authUser");
   const [authUser, setAuthUser] = useState(
-    JSON.parse(localStorage.getItem("authUser")) || null
+    storedAuthUser ? JSON.parse(storedAuthUser) : null
   );
+
+
+
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser }}>
+    <AuthContext.Provider value={{ authUser, setAuthUser}}>
       {children}
     </AuthContext.Provider>
   );
