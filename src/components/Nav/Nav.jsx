@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
-import ProfileModal from '../ProfileModal/ProfileModal'; // Import the ProfileModal
-import styles from './Nav.module.css';
+import React, { useState } from "react";
+import ProfileModal from "../ProfileModal/ProfileModal"; // Import the ProfileModal
+import styles from "./Nav.module.css";
+import useLogout from "../../hooks/useLogout";
 
 export const Navbar = () => {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
-
+  const { logout } = useLogout();
   const handleProfileClick = () => {
     setIsProfileModalOpen(true); // Open the modal when profile icon is clicked
   };
 
   const handleCloseModal = () => {
     setIsProfileModalOpen(false); // Close the modal when clicking close button
+  };
+  const handleLogOut = async () => {
+    await logout();
   };
 
   return (
@@ -28,8 +32,10 @@ export const Navbar = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              <i className={`${styles.icon} fa-solid fa-right-from-bracket`}></i>
+            <a className="nav-link" onClick={handleLogOut}>
+              <i
+                className={`${styles.icon} fa-solid fa-right-from-bracket`}
+              ></i>
             </a>
           </li>
         </ul>
