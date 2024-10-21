@@ -20,12 +20,20 @@ function App() {
           path="/"
           element={authUser ? <Home /> : <Navigate to={"/login"} />}
         />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={authUser ? <Navigate to={"/chat"} /> : <Login />}
+        />
         <Route
           path="/signup"
-          element={authUser ? <Navigate to="/" /> : <Signup />}
+          element={authUser ? <Navigate to={"/chat"} /> : <Signup />}
         />
+        {/* Not protected for testing */}
         <Route path="/chat" element={<MainLayout />} />
+        {/* <Route
+          path="/chat"
+          element={authUser ? <MainLayout /> : <Navigate to={"/"} />}
+        /> */}
       </>
     )
   );
