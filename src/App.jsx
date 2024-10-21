@@ -1,5 +1,4 @@
 import MainLayout from "./components/MainPage/MainPage";
-import React from "react";
 import {
   Navigate,
   Route,

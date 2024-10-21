@@ -1,7 +1,10 @@
-import React from 'react';
+
+import useGetChats from '../../hooks/useGetChats';
 import styles from './Contacts.module.css';
 
 export const Contacts = ({ onSelectContact, filterType, showUnread, selectedContact }) => {
+    const {loading, chats} = useGetChats();
+    console.log("🧮🧮🧮🧮🧮The chats: ",chats)
     const contacts = [
         { name: "name1", id: 1, img: "/avatar.png", type: 'individual', unreadMessages: 3 },
         { name: "name2", id: 2, img: "/avatar.png", type: 'group', unreadMessages: 0 },
