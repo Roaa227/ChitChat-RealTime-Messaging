@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Login.css';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Login.css";
+import useLogIn from "../../hooks/useLogIn";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    usernameOrEmail: '',
-    password: '',
+    email: "",
+    password: "",
   });
+  const { login } = useLogIn();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,21 +18,22 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData); // You can add login logic here
+    await login(formData);
+    // console.log(formData); // You can add login logic here
   };
 
   return (
     <div className="login-form-container">
       <div className="login-form">
         <h2>Login</h2>
-        <form >
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
-            name="usernameOrEmail"
-            placeholder="Email/Username"
-            value={formData.usernameOrEmail}
+            name="email"
+            placeholder="Email"
+            value={formData.email}
             onChange={handleChange}
           />
           <input
