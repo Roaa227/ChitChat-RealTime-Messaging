@@ -29,10 +29,9 @@ const GettingStartedModal = () => {
                     }}
                 >
                     <div
-                        className="modal-dialog"
+                        className="modal-dialog shadow-lg p-3 mb-5 rounded"
                         style={{
                             backgroundColor: 'white',
-                            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
                             borderRadius: '15px',
                             padding: '20px',
                             width: '50%',

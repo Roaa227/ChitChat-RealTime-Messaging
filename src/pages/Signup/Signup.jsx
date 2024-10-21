@@ -44,7 +44,9 @@ export const Signup = () => {
             value={formData.userName}
             onChange={handleChange}
           />
-          {errors.userName && <p >{errors.userName}</p>}
+          {errors.userName && <p style={{margin:'0%', color:'#e5de00', fontWeight:'bold' }}>{errors.userName}</p>}
+          {/* <p >test test</p> */}
+
           <input
             type="email"
             name="email"
@@ -52,7 +54,10 @@ export const Signup = () => {
             value={formData.email}
             onChange={handleChange}
           />
-          {errors.email && <p >{errors.email}</p>}
+          <div style={{margin:'0%'}}>
+          {errors.email && <p style={{margin:'0%', color:'#e5de00', fontWeight:'bold' }}>{errors.email}</p>}
+          {/* <p style={{margin:'0%', color:'#e5de00', fontWeight:'bold' }}>test test</p> */}
+          </div>
           <input
             type="password"
             name="password"
@@ -60,7 +65,9 @@ export const Signup = () => {
             value={formData.password}
             onChange={handleChange}
           />
-          {errors.password && <p >{errors.password}</p>}
+          {errors.password && <p style={{margin:'0%', color:'#e5de00', fontWeight:'bold' }}>{errors.password}</p>}
+          {/* <p style={{margin:'0%', color:'#e5de00', fontWeight:'bold' }}>test test</p> */}
+
           <button type="submit">Sign Up</button>
         </form>
         <p>

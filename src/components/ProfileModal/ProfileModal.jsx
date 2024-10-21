@@ -27,7 +27,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
 
     return (
         <>
-            <div className={`modal fade ${isOpen ? 'show' : ''}`} style={{ display: isOpen ? 'block' : 'none' }} aria-labelledby="exampleModalLabel" aria-hidden={!isOpen}>
+            <div className={`modal fade ${isOpen ? 'show' : ''} shadow-lg p-3 mb-5 rounded`} style={{display: isOpen ? 'block' : 'none'}} aria-labelledby="exampleModalLabel" aria-hidden={!isOpen}>
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">

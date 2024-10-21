@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #a5d8ff, #9a4bff);
+    background: linear-gradient(to bottom, #88B6F2, #9049BF);
   }
   
   .login-form {
@@ -57,7 +57,7 @@
   }
   
   p a {
-    color: #7c4dff;
+    color: #88B6F2;
     text-decoration: none;
   }
   
