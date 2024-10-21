@@ -8,7 +8,7 @@ let validInputs = true;
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
-  const { setAuthUser } = useAuthContext();
+  const { validateUser } = useAuthContext();
   const signup = async (formData, setErrors) => {
     const { userName, email, password } = formData;
     handleInputErrors(formData, setErrors);
@@ -18,22 +18,23 @@ const useSignup = () => {
     try {
       const res = await fetch(`${import.meta.env.VITE_Back_END_Host}/signup`, {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userName, email, password }),
-
       });
 
+      console.log("Kellow");
       const data = await res.json();
-      
       if (data.errors) {
         setErrors(data.errors);
         return;
       }
       console.log(data);
 
-      // Save token:
-      localStorage.setItem("authUser", JSON.stringify(data.token));
-      setAuthUser(data.token);
+      validateUser(data.token);
+      // // Save token:
+      // localStorage.setItem("authUser", JSON.stringify(data.token));
+      // setAuthUser(data.token);
     } catch (error) {
       // Handle any other unexpected errors that may occur
       alert(error.message);

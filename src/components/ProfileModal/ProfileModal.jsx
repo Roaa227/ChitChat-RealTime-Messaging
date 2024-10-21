@@ -1,33 +1,107 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const ProfileModal = ({ isOpen, onClose }) => {
-    const [user, setUser] = useState({ name: "Ra2re2o", Email: "Email: 123@example.com", Bio: "HELLO." , picture:"/avatar.png" });
-    const [newUser, setNewUser] = useState({ name: "", Email: "", Bio: "" , picture:""});
-    const [showChangeModal, setShowChangeModal] = useState(false); 
+    const [user, setUser] = useState({ name: "", Email: "", picture: "" });
+    const [newUser, setNewUser] = useState({ name: "", Email: "", picture: "" });
+    const [showChangeModal, setShowChangeModal] = useState(false);
+
+    // Fetch user profile when modal opens
+    useEffect(() => {
+        if (isOpen) {
+            fetch(`${import.meta.env.VITE_Back_END_Host}/getProfile`, {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.user) {
+                        setUser({
+                            name: data.user.userName,
+                            Email: data.user.email,
+                            picture: data.user.profilePicture,
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching profile:", error);
+                });
+        }
+    }, [isOpen]);
 
     const handleChangeModalToggle = () => {
-        setShowChangeModal(!showChangeModal); 
+        setShowChangeModal(!showChangeModal);
     };
 
     const handleChangeModalClose = () => {
-        setShowChangeModal(false); // Close change modal
+        setShowChangeModal(false);
     };
 
-    const handleChangeProfile = (e) => {
+    const handleChangeProfile = async (e) => {
         e.preventDefault();
-        setUser((prevState) => ({
-            picture: newUser.picture ? URL.createObjectURL(newUser.picture) : user.picture,
-            name: newUser.name || prevState.name,
-            Email: newUser.Email || prevState.Email,
-            Bio: newUser.Bio || prevState.Bio,
-        }));
-        setNewUser({ name: "", Email: "", Bio: "" ,picture:""});
-        handleChangeModalClose(); // Close change modal after saving
+
+        // Update username
+        if (newUser.name) {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_Back_END_Host}/updateUsername`, {
+                    method: "PUT",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ newUsername: newUser.name }),
+                });
+
+                const result = await response.json();
+                if (result.user) {
+                    setUser((prevState) => ({
+                        ...prevState,
+                        name: result.user.userName,
+                    }));
+                } else {
+                    console.error("Error updating username:", result.message);
+                }
+            } catch (error) {
+                console.error("Error updating username:", error);
+            }
+        }
+
+        // Upload new profile picture
+        if (newUser.picture) {
+            const formData = new FormData();
+            formData.append("photo", newUser.picture);
+
+            try {
+                const response = await fetch(`${import.meta.env.VITE_Back_END_Host}/uploadProfilePhoto`, {
+                    method: "POST",
+                    credentials: "include",
+                    body: formData,
+                });
+
+                const result = await response.json();
+                if (result.user) {
+                    setUser((prevState) => ({
+                        ...prevState,
+                        picture: result.user.profilePicture,
+                    }));
+                } else {
+                    console.error("Error uploading profile photo:", result.message);
+                }
+            } catch (error) {
+                console.error("Error uploading profile photo:", error);
+            }
+        }
+
+        // Reset new user state and close modal
+        setNewUser({ name: "", picture: "" });
+        handleChangeModalClose();
     };
 
     return (
         <>
-            <div className={`modal fade ${isOpen ? 'show' : ''} shadow-lg p-3 mb-5 rounded`} style={{display: isOpen ? 'block' : 'none'}} aria-labelledby="exampleModalLabel" aria-hidden={!isOpen}>
+            <div className={`modal fade ${isOpen ? 'show' : ''} shadow-lg p-3 mb-5 rounded`} style={{ display: isOpen ? 'block' : 'none' }} aria-labelledby="exampleModalLabel" aria-hidden={!isOpen}>
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -38,17 +112,16 @@ const ProfileModal = ({ isOpen, onClose }) => {
                             <img src={user.picture} alt="Profile" style={{ width: '100px', borderRadius: '50%' }} />
                             <h3>{user.name}</h3>
                             <h5>{user.Email}</h5>
-                            <h5>Bio: {user.Bio}</h5>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn" onClick={onClose} style={{backgroundColor:'#DFDCF2', color:'#9049BF'}}>
+                            <button type="button" className="btn" onClick={onClose} style={{ backgroundColor: '#DFDCF2', color: '#9049BF' }}>
                                 Close
                             </button>
                             <button
                                 type="button"
                                 className="btn"
-                                onClick={handleChangeModalToggle} 
-                                style={{backgroundColor:'#9049BF', color:'#DFDCF2'}}
+                                onClick={handleChangeModalToggle}
+                                style={{ backgroundColor: '#9049BF', color: '#DFDCF2' }}
                             >
                                 Change
                             </button>
@@ -75,8 +148,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
                                             className="form-control"
                                             id="pic"
                                             name="pic"
-                                            onChange={(e) => setNewUser({ ...newUser,picture: e.target.files[0] })}
-                                            placeholder="choose a profile picture"
+                                            onChange={(e) => setNewUser({ ...newUser, picture: e.target.files[0] })}
                                         />
                                         <label htmlFor="name" className="form-label">Name</label>
                                         <input
@@ -86,39 +158,16 @@ const ProfileModal = ({ isOpen, onClose }) => {
                                             name="name"
                                             value={newUser.name}
                                             onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-                                            placeholder="Enter new name"
+                                            placeholder={user.name}
                                         />
                                     </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="email" className="form-label">Email</label>
-                                        <input
-                                            type="email"
-                                            className="form-control"
-                                            id="email"
-                                            name="Email"
-                                            value={newUser.Email}
-                                            onChange={(e) => setNewUser({ ...newUser, Email: e.target.value })}
-                                            placeholder="Enter new email"
-                                        />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="bio" className="form-label">Bio</label>
-                                        <textarea
-                                            className="form-control"
-                                            id="bio"
-                                            name="Bio"
-                                            value={newUser.Bio}
-                                            onChange={(e) => setNewUser({ ...newUser, Bio: e.target.value })}
-                                            placeholder="Enter new bio"
-                                        />
-                                    </div>
-                                    <button type="submit" className="btn" onClick={handleChangeProfile} style={{backgroundColor:'#9049BF', color:'#DFDCF2'}}>
+                                    <button type="submit" className="btn" style={{ backgroundColor: '#9049BF', color: '#DFDCF2' }}>
                                         Save changes
                                     </button>
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn" onClick={handleChangeModalClose} style={{backgroundColor:'#DFDCF2', color:'#9049BF'}}>
+                                <button type="button" className="btn" onClick={handleChangeModalClose} style={{ backgroundColor: '#DFDCF2', color: '#9049BF' }}>
                                     Close
                                 </button>
                             </div>
