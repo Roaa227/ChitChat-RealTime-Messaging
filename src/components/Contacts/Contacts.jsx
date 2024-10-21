@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './Contacts.module.css';
+import { Link } from "react-router-dom";
+
 
 export const Contacts = ({ onSelectContact, filterType, showUnread, selectedContact }) => {
     const contacts = [
@@ -32,7 +34,7 @@ export const Contacts = ({ onSelectContact, filterType, showUnread, selectedCont
     return (
         <div className={`list-group ${styles.con}`}>
             {filteredContacts.map((contact) => (
-                <a
+                <Link
                     href="#"
                     key={contact.id}
                     onClick={() => handleContactClick(contact)}
@@ -52,7 +54,7 @@ export const Contacts = ({ onSelectContact, filterType, showUnread, selectedCont
                                 top: '10px',
                             }}>{contact.unreadMessages}</span>
                     )}
-                </a>
+                </Link>
             ))}
         </div>
     );

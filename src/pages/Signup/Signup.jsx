@@ -4,11 +4,13 @@ import "./Signup.css";
 import useSignup from "../../hooks/useSignup";
 
 export const Signup = () => {
+
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
     password: "",
   });
+
 
   const { loading, signup } = useSignup();
   const [errors, setErrors] = useState({
@@ -27,6 +29,7 @@ export const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(formData, setErrors);
+    
   };
 
   return (

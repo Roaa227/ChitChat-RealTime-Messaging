@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Contacts from '../../components/Contacts/Contacts';
 import Navbar from '../../components/Nav/Nav';
 import Topbar from '../../components/topbar/Topbar';
@@ -6,6 +6,7 @@ import Chat from '../../components/Chat/Chat';
 import NameBar from '../../components/NameBar/NameBar';
 import SearchBar from '../SearchBar/SearchBar';
 import logo from '/info.png';
+import GettingStartedModal from '../../pages/gettingStarted/gettingStarted'
 
 export const MainLayout = () => {
     const [selectedContact, setSelectedContact] = useState(null);
@@ -13,6 +14,9 @@ export const MainLayout = () => {
     const [isSliding, setIsSliding] = useState(false);
     const [filterType, setFilterType] = useState('all');
     const [showUnread, setShowUnread] = useState(false);
+    const [isGettingStartedModalOpen, setIsGettingStartedModalOpen] = useState(false);
+
+
 
     // Mock-up messages for contacts (by IDs)
     const contactMessages = {
@@ -152,20 +156,20 @@ export const MainLayout = () => {
             <style jsx>{`
                 .sliding {
                     animation: slide 0.3s forwards ease-in-out;
+                }
+                @keyframes slide {
+                    from {
+                        transform: translateX(100%);
                     }
-                    @keyframes slide {
-                        from {
-                            transform: translateX(100%);
-                            }
-                            to {
-                                transform: translateX(0);
-                                }
-                                }
-                                `}</style>
-        </div>
+                    to {
+                        transform: translateX(0);
+                    }
+                }
+            `}</style>
 
+        </div>
+        // <GettingStartedModal />
     );
 };
 
 export default MainLayout;
-

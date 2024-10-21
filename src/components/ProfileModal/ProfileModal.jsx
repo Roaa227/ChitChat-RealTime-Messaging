@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 const ProfileModal = ({ isOpen, onClose }) => {
-    const [user, setUser] = useState({ name: "Ra2re2o", Email: "Email: 123@example.com", Bio: "HELLO." });
-    const [newUser, setNewUser] = useState({ name: "", Email: "", Bio: "" });
-    const [showChangeModal, setShowChangeModal] = useState(false); // State for change modal visibility
+    const [user, setUser] = useState({ name: "Ra2re2o", Email: "Email: 123@example.com", Bio: "HELLO." , picture:"/avatar.png" });
+    const [newUser, setNewUser] = useState({ name: "", Email: "", Bio: "" , picture:""});
+    const [showChangeModal, setShowChangeModal] = useState(false); 
 
     const handleChangeModalToggle = () => {
-        setShowChangeModal(!showChangeModal); // Toggle change modal
+        setShowChangeModal(!showChangeModal); 
     };
 
     const handleChangeModalClose = () => {
@@ -16,11 +16,12 @@ const ProfileModal = ({ isOpen, onClose }) => {
     const handleChangeProfile = (e) => {
         e.preventDefault();
         setUser((prevState) => ({
+            picture: newUser.picture ? URL.createObjectURL(newUser.picture) : user.picture,
             name: newUser.name || prevState.name,
             Email: newUser.Email || prevState.Email,
             Bio: newUser.Bio || prevState.Bio,
         }));
-        setNewUser({ name: "", Email: "", Bio: "" });
+        setNewUser({ name: "", Email: "", Bio: "" ,picture:""});
         handleChangeModalClose(); // Close change modal after saving
     };
 
@@ -34,7 +35,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
                             <button type="button" className="btn-close" onClick={onClose} aria-label="Close"></button>
                         </div>
                         <div className="modal-body d-flex flex-column align-items-center text-center">
-                            <img src="/avatar.png" alt="Profile" style={{ width: '100px', borderRadius: '50%' }} />
+                            <img src={user.picture} alt="Profile" style={{ width: '100px', borderRadius: '50%' }} />
                             <h3>{user.name}</h3>
                             <h5>{user.Email}</h5>
                             <h5>Bio: {user.Bio}</h5>
@@ -67,6 +68,16 @@ const ProfileModal = ({ isOpen, onClose }) => {
                             <div className="modal-body">
                                 <form onSubmit={handleChangeProfile}>
                                     <div className="mb-3">
+                                        <label htmlFor="pic" className="form-label">Picture</label>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className="form-control"
+                                            id="pic"
+                                            name="pic"
+                                            onChange={(e) => setNewUser({ ...newUser,picture: e.target.files[0] })}
+                                            placeholder="choose a profile picture"
+                                        />
                                         <label htmlFor="name" className="form-label">Name</label>
                                         <input
                                             type="text"
