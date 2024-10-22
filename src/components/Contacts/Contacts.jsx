@@ -11,38 +11,38 @@ export const Contacts = ({
   const { loading, chats } = useGetChats(filterType);
   const { selectedContact}= useChatContext();
 
-  const contacts = [
-    {
-      name: "name1",
-      id: 1,
-      profilepicture: "/avatar.png",
-      type: "individual",
-      unreadMessages: 3,
-    },
-    {
-      name: "name2",
-      id: 2,
-      profilepicture: "/avatar.png",
-      type: "group",
-      unreadMessages: 0,
-    },
-    // { name: "name3", id: 3, profilepicture
-    // : "/avatar.png", type: 'group', unreadMessages: 0 },
-    //         // { name: "name4", id: 4, profilepicture
-    // : "/avatar.png", type: 'group', unreadMessages: 0 },
-    //         // { name: "name5", id: 5, profilepicture
-    // : "/avatar.png", type: 'individual', unreadMessages: 10 },
-    //         // { name: "name6", id: 6, profilepicture
-    // : "/avatar.png", type: 'individual', unreadMessages: 0 },
-    //         // { name: "name7", id: 7, profilepicture
-    // : "/avatar.png", type: 'individual', unreadMessages: 0 },
-    //         // { name: "name8", id: 8, profilepicture
-    // : "/avatar.png", type: 'group', unreadMessages: 90 },
-    //         // { name: "name9", id: 9, profilepicture
-    // : "/avatar.png", type: 'individual', unreadMessages: 0 },
-    //         // { name: "name10", id: 10, profilepicture
-    // : "/avatar.png", type: 'group', unreadMessages: 1 },
-  ];
+  // const contacts = [
+  //   {
+  //     name: "name1",
+  //     id: 1,
+  //     profilepicture: "/avatar.png",
+  //     type: "individual",
+  //     unreadMessages: 3,
+  //   },
+  //   {
+  //     name: "name2",
+  //     id: 2,
+  //     profilepicture: "/avatar.png",
+  //     type: "group",
+  //     unreadMessages: 0,
+  //   },
+  //   // { name: "name3", id: 3, profilepicture
+  //   // : "/avatar.png", type: 'group', unreadMessages: 0 },
+  //   //         // { name: "name4", id: 4, profilepicture
+  //   // : "/avatar.png", type: 'group', unreadMessages: 0 },
+  //   //         // { name: "name5", id: 5, profilepicture
+  //   // : "/avatar.png", type: 'individual', unreadMessages: 10 },
+  //   //         // { name: "name6", id: 6, profilepicture
+  //   // : "/avatar.png", type: 'individual', unreadMessages: 0 },
+  //   //         // { name: "name7", id: 7, profilepicture
+  //   // : "/avatar.png", type: 'individual', unreadMessages: 0 },
+  //   //         // { name: "name8", id: 8, profilepicture
+  //   // : "/avatar.png", type: 'group', unreadMessages: 90 },
+  //   //         // { name: "name9", id: 9, profilepicture
+  //   // : "/avatar.png", type: 'individual', unreadMessages: 0 },
+  //   //         // { name: "name10", id: 10, profilepicture
+  //   // : "/avatar.png", type: 'group', unreadMessages: 1 },
+  // ];
 
 //   const filteredContacts = chats.filter((contact) => {
 //     const typeMatch = filterType === "all" || contact.type === filterType;
@@ -63,7 +63,7 @@ export const Contacts = ({
       {chats.map((contact) => (
         <a
           href="#"
-          key={contact.id}
+          key={contact._id}
           onClick={() => handleContactClick(contact)}
           className={`p-3 list-group-item list-group-item-action d-flex ${styles.contact} `}
         >
@@ -75,7 +75,7 @@ export const Contacts = ({
           </div>
           {/* {contact.unreadMessages > 0 && (
             <span
-              class="badge text-bg-danger rounded-pill d-flex"
+              className="badge text-bg-danger rounded-pill d-flex"
               style={{
                 position: "absolute",
                 right: "10px",

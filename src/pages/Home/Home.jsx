@@ -1,4 +1,4 @@
-import React from 'react'
+
 import image from '../../../public/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import './Home.css'; 

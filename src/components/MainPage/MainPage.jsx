@@ -155,7 +155,7 @@ export const MainLayout = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style >{`
         .sliding {
           animation: slide 0.3s forwards ease-in-out;
         }

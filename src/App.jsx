@@ -27,12 +27,12 @@ function App() {
           path="/signup"
           element={authUser ? <Navigate to="/getting-started" /> : <Signup />}
         />
+        {/* Not protected for testing */}
+
         <Route
           path="/chat"
-          element={authUser ? <MainLayout /> : <Navigate to="/" />}
+          element={authUser ? <MainLayout /> : <Navigate to={"/"} />}
         />
-        <Route path="/chat" element={<MainLayout />} />
-        <Route path="/getting-started" element={<GettingStartedModal />} />
       </>
     )
   );
