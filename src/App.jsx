@@ -29,11 +29,11 @@ function App() {
           element={authUser ? <Navigate to={"/chat"} /> : <Signup />}
         />
         {/* Not protected for testing */}
-        <Route path="/chat" element={<MainLayout />} />
-        {/* <Route
+
+        <Route
           path="/chat"
           element={authUser ? <MainLayout /> : <Navigate to={"/"} />}
-        /> */}
+        />
       </>
     )
   );
