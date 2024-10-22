@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import Cookies from "js-cookie";
+import { useChatContext } from "./ChatContext";
 export const AuthContext = createContext();
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -8,6 +9,7 @@ export const useAuthContext = () => {
 };
 // eslint-disable-next-line react/prop-types
 export const AuthContextProvider = ({ children }) => {
+  const { setSelectedContact } = useChatContext();
   const [authUser, setAuthUser] = useState(() => {
     const storedAuthUser = Cookies.get("jwt");
     if (storedAuthUser) {
@@ -33,6 +35,7 @@ export const AuthContextProvider = ({ children }) => {
     // logout functionality
     Cookies.remove("jwt");
     setAuthUser(null);
+    setSelectedContact(null);
   };
 
   return (
