@@ -9,6 +9,7 @@ import {
 import { Home } from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
+import GettingStartedModal from "./pages/gettingStarted/gettingStarted";
 import { useAuthContext } from "./contexts/authContext";
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
+        <Route path="/" element={<Home />} />
         <Route
-          path="/"
-          element={authUser ? <Home /> : <Navigate to={"/login"} />}
+          path="/login"
+          element={authUser ? <Navigate to="/chat" /> : <Login />}
         />
         <Route
           path="/login"
@@ -26,10 +28,16 @@ function App() {
         />
         <Route
           path="/signup"
+          element={authUser ? <Navigate to="/getting-started" /> : <Signup />}
+        />
+        <Route
+          path="/chat"
+          element={authUser ? <MainLayout /> : <Navigate to="/" />}
           element={authUser ? <Navigate to={"/chat"} /> : <Signup />}
         />
         {/* Not protected for testing */}
         <Route path="/chat" element={<MainLayout />} />
+        <Route path="/getting-started" element={<GettingStartedModal />} />
         {/* <Route
           path="/chat"
           element={authUser ? <MainLayout /> : <Navigate to={"/"} />}

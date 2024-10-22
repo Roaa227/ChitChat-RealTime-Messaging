@@ -1,14 +1,14 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import useLogIn from "../../hooks/useLogIn";
+import { useState } from "react";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const { login } = useLogIn();
+  const { loading, login } = useLogIn();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,7 +21,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(formData);
-    // console.log(formData); // You can add login logic here
   };
 
   return (

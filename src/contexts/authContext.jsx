@@ -24,7 +24,9 @@ export const AuthContextProvider = ({ children }) => {
       expires: 7,
       // secure: true  //* Commented until production
     });
-    setAuthUser(JSON.parse(atob(token.split(".")[1]))); // Decode JWT payload to get user info
+    const decodedPayload = JSON.parse(atob(token.split(".")[1])); // Decode JWT payload to get user info
+    setAuthUser(decodedPayload);
+    // setAuthUser(JSON.parse(atob(token.split(".")[1]))); // Decode JWT payload to get user info
   };
 
   const invalidateUser = () => {
