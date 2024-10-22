@@ -1,4 +1,4 @@
-import React from "react";
+
 import styles from "./Messages.module.css"; // Adjust the path as needed
 import useGetMessages from "../../hooks/useGetMessages";
 import useListenMessages from "../../hooks/useListenMessages";
@@ -19,7 +19,7 @@ const Messages = ({ contactName }) => {
         </div>
       ))}
       {!loading && messages.length === 0 && (
-        <p className=" text-center">Send a message to start the conversation</p>
+        <p style={{ color: '#CEE3FF' }} className=" text-center ">Send a message to start the conversation</p>
       )}
     </div>
   );
