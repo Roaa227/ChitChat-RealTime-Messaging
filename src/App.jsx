@@ -10,6 +10,7 @@ import {
 import { Home } from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
+import GettingStartedModal from "./pages/gettingStarted/gettingStarted";
 import { useAuthContext } from "./contexts/authContext";
 
 function App() {
@@ -24,13 +25,14 @@ function App() {
         />
         <Route
           path="/signup"
-          element={authUser ? <Navigate to="/chat" /> : <Signup />}
+          element={authUser ? <Navigate to="/getting-started" /> : <Signup />}
         />
-        {/* <Route
+        <Route
           path="/chat"
           element={authUser ? <MainLayout /> : <Navigate to="/" />}
-        /> */}
+        />
         <Route path="/chat" element={<MainLayout />} />
+        <Route path="/getting-started" element={<GettingStartedModal />} />
       </>
     )
   );

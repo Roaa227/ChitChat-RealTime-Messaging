@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import ProfileModal from '../ProfileModal/ProfileModal'; // Import the ProfileModal
+import ProfileModal from '../ProfileModal/ProfileModal';
 import styles from './Nav.module.css';
 import useLogout from '../../hooks/useLogout';
+import { Link } from "react-router-dom";
+
 
 export const Navbar = () => {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -20,19 +22,19 @@ export const Navbar = () => {
       <div className={`${styles.con}`}>
         <ul className={`nav flex-column ${styles.side}`}>
           <li className="nav-item">
-            <a className="nav-link" onClick={handleProfileClick}>
+            <Link className="nav-link" onClick={handleProfileClick}>
               <i className={`${styles.icon} fa-solid fa-circle-user`}></i>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" href="#">
               <i className={`${styles.icon} fa-solid fa-circle-plus`}></i>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#" onClick={logout}>
+            <Link className="nav-link" href="#" onClick={logout}>
               <i className={`${styles.icon} fa-solid fa-right-from-bracket`}></i>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
