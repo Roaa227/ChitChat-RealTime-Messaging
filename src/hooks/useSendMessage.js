@@ -22,7 +22,7 @@ const useSendMessage = () => {
         throw new Error(data.error);
       }
       console.log("the message: 🥳", data);
-      // setMessages((prevMessages) => [...prevMessages, ...data]);
+      setMessages((prevMessages) => [...prevMessages, ...data]);
     } catch (error) {
       alert(error.message);
     } finally {
