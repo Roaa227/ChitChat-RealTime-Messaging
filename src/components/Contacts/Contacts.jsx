@@ -68,7 +68,7 @@ export const Contacts = ({
           className={`p-3 list-group-item list-group-item-action d-flex ${styles.contact} `}
         >
           <div className={styles.circularImage}>
-            <img src={contact.profilepicture} alt={contact.userName} />
+            <img src={contact.profilePicture} alt={contact.userName} />
           </div>
           <div className="fs-5" style={{ color: "#9049BF" }}>
             {contact.userName}
