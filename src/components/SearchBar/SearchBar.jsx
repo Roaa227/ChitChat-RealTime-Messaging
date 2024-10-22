@@ -36,7 +36,7 @@ export const SearchBar = ({ setFilterType, setShowUnread, showUnread }) => {
                         <i className={`fa fa-search `}></i>
                     </button>
                 </div>
-                <div className="d-flex my-2 ">
+                {/* <div className="d-flex my-2 ">
                     <button
                         className={`${styles.button} me-2 mx-2 px-3 py-0 ${isAllActive ? styles.active : ''}`}
                         onClick={toggleAllFilter}
@@ -55,7 +55,7 @@ export const SearchBar = ({ setFilterType, setShowUnread, showUnread }) => {
                     >
                         Unread
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     );
