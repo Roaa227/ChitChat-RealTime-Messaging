@@ -27,10 +27,10 @@ function App() {
           path="/signup"
           element={authUser ? <Navigate to="/getting-started" /> : <Signup />}
         />
-        {/* <Route
+        <Route
           path="/chat"
           element={authUser ? <MainLayout /> : <Navigate to="/" />}
-        /> */}
+        />
         <Route path="/chat" element={<MainLayout />} />
         <Route path="/getting-started" element={<GettingStartedModal />} />
       </>

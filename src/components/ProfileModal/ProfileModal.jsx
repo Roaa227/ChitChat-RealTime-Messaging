@@ -99,6 +99,32 @@ const ProfileModal = ({ isOpen, onClose }) => {
         handleChangeModalClose();
     };
 
+    // Handle deleting the profile photo
+    const handleDeletePhoto = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_Back_END_Host}/deleteProfilePhoto`, {
+                method: "DELETE",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const result = await response.json();
+            if (result.user) {
+                // Update user profile to the default picture
+                setUser((prevState) => ({
+                    ...prevState,
+                    picture: result.user.profilePicture,
+                }));
+            } else {
+                console.error("Error deleting profile photo:", result.message);
+            }
+        } catch (error) {
+            console.error("Error deleting profile photo:", error);
+        }
+    };
+
     return (
         <>
             <div className={`modal fade ${isOpen ? 'show' : ''} shadow-lg p-3 mb-5 rounded`} style={{ display: isOpen ? 'block' : 'none' }} aria-labelledby="exampleModalLabel" aria-hidden={!isOpen}>
@@ -124,6 +150,14 @@ const ProfileModal = ({ isOpen, onClose }) => {
                                 style={{ backgroundColor: '#9049BF', color: '#DFDCF2' }}
                             >
                                 Change
+                            </button>
+                            <button
+                                type="button"
+                                className="btn"
+                                onClick={handleDeletePhoto} 
+                                style={{ backgroundColor: '#9049BF', color: '#DFDCF2' }}
+                            >
+                                Delete Photo
                             </button>
                         </div>
                     </div>
