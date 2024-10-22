@@ -2,9 +2,11 @@
 import styles from "./Messages.module.css"; // Adjust the path as needed
 import useGetMessages from "../../hooks/useGetMessages";
 import useListenMessages from "../../hooks/useListenMessages";
+import { useAuthContext } from "../../contexts/authContext";
 
 const Messages = ({ contactName }) => {
   const { messages, loading } = useGetMessages();
+  const {authUser} = useAuthContext();
   useListenMessages();
   return (
     <div className={styles.messagesContainer}>
@@ -12,10 +14,10 @@ const Messages = ({ contactName }) => {
         <div
           key={index}
           className={
-            message.isUser ? styles.userMessage : styles.contactMessage
+            message.senderId === authUser.user._id? styles.userMessage : styles.contactMessage
           }
         >
-          {message.text} {/* Ensure this is a string */}
+          {message.message} {/* Ensure this is a string */}
         </div>
       ))}
       {!loading && messages.length === 0 && (

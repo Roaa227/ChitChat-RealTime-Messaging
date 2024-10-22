@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useChatContext} from "../contexts/ChatContext";
+import { useChatContext } from "../contexts/ChatContext";
 const useSendMessage = () => {
   const [loading, setLoading] = useState();
   const { messages, setMessages, selectedContact } = useChatContext();
@@ -22,7 +22,7 @@ const useSendMessage = () => {
         throw new Error(data.error);
       }
       console.log("the message: 🥳", data);
-      setMessages([...messages, data]);
+      // setMessages((prevMessages) => [...prevMessages, ...data]);
     } catch (error) {
       alert(error.message);
     } finally {
