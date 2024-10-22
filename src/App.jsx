@@ -1,4 +1,5 @@
 import MainLayout from "./components/MainPage/MainPage";
+import React from "react";
 import {
   Navigate,
   Route,
@@ -9,6 +10,7 @@ import {
 import { Home } from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
+import GettingStartedModal from "./pages/gettingStarted/gettingStarted";
 import { useAuthContext } from "./contexts/authContext";
 
 function App() {
@@ -16,24 +18,21 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route
-          path="/"
-          element={authUser ? <Home /> : <Navigate to={"/login"} />}
-        />
+        <Route path="/" element={<Home />} />
         <Route
           path="/login"
-          element={authUser ? <Navigate to={"/chat"} /> : <Login />}
+          element={authUser ? <Navigate to="/chat" /> : <Login />}
         />
         <Route
           path="/signup"
-          element={authUser ? <Navigate to={"/chat"} /> : <Signup />}
+          element={authUser ? <Navigate to="/getting-started" /> : <Signup />}
         />
-        {/* Not protected for testing */}
-        <Route path="/chat" element={<MainLayout />} />
-        {/* <Route
+        <Route
           path="/chat"
-          element={authUser ? <MainLayout /> : <Navigate to={"/"} />}
-        /> */}
+          element={authUser ? <MainLayout /> : <Navigate to="/" />}
+        />
+        <Route path="/chat" element={<MainLayout />} />
+        <Route path="/getting-started" element={<GettingStartedModal />} />
       </>
     )
   );

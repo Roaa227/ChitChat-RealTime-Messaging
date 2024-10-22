@@ -1,5 +1,7 @@
 import React from "react";
 import styles from './NameBar.module.css';
+import { Link } from "react-router-dom";
+
 
 export const NameBar = ({ selectedContact, setSelectedContact }) => {
     const noSelection = () => {
@@ -10,9 +12,9 @@ export const NameBar = ({ selectedContact, setSelectedContact }) => {
         <nav className={`navbar ${styles.con}`}>
             <div className={`container-fluid`}>
                 <span className={`navbar-brand d-flex ${styles.brand}`}>
-                    <a onClick={noSelection}>
+                    <Link onClick={noSelection}>
                         <i className={`fa-solid fa-arrow-left mx-2 ${styles.arrow}`}></i>
-                    </a>
+                    </Link>
                     <div className={styles.circularImage}>
                         <img src={selectedContact.profilePicture} alt={selectedContact.userName
 } className="flex-fill" />
