@@ -20,14 +20,14 @@ export const AuthContextProvider = ({ children }) => {
     return null; // No user found
   });
 
-  const validateUser = (token) => {
+  const validateUser = (userData) => {
     // login functionality
-    Cookies.set("jwt", token, {
+    Cookies.set("jwt", userData.token, {
       expires: 7,
       // secure: true  //* Commented until production
     });
-    const decodedPayload = JSON.parse(atob(token.split(".")[1])); // Decode JWT payload to get user info
-    setAuthUser(decodedPayload);
+    // const decodedPayload = JSON.parse(atob(token.split(".")[1])); // Decode JWT payload to get user info
+    setAuthUser(userData);
     // setAuthUser(JSON.parse(atob(token.split(".")[1]))); // Decode JWT payload to get user info
   };
 
