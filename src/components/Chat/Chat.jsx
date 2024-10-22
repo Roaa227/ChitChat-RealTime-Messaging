@@ -13,8 +13,8 @@ const Chat = () => {
     e.preventDefault();
     if (input) {
       await sendMessage(input);
-        const newMessage = { text: input, isUser: true };
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        // const newMessage = { text: input, isUser: true };
+        // setMessages((prevMessages) => [...prevMessages, newMessage]);
 
       setInput("");
     }
