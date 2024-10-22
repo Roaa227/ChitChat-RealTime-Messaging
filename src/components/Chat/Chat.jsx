@@ -2,29 +2,32 @@ import { useState } from "react";
 import styles from "./Chat.module.css";
 import Messages from "../Messages/Messages";
 import { useChatContext } from "../../contexts/ChatContext";
+import useSendMessage from "../../hooks/useSendMessage";
+
 
 const Chat = () => {
   const [input, setInput] = useState("");
-  const { messages, selectedContact,  setMessages } =
-    useChatContext();
-  const sendMessage = (e) => {
+  const { messages, selectedContact, setMessages } = useChatContext();
+  const { sendMessage } = useSendMessage();
+  const handleSendMessage = async (e) => {
     e.preventDefault();
     if (input) {
-      const newMessage = { text: input, isUser: true };
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      await sendMessage(input);
+        const newMessage = { text: input, isUser: true };
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+
       setInput("");
     }
   };
 
-
   return (
     <div className={styles.chatContainer}>
       <Messages
-        messages={messages}
+       
         contactName={selectedContact ? selectedContact.userName : ""}
       />
 
-      <form onSubmit={sendMessage} className={styles.chatForm}>
+      <form onSubmit={handleSendMessage} className={styles.chatForm}>
         <input
           type="text"
           value={input}
