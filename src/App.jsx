@@ -1,4 +1,5 @@
 import MainLayout from "./components/MainPage/MainPage";
+import React from "react";
 import {
   Navigate,
   Route,
@@ -23,25 +24,15 @@ function App() {
           element={authUser ? <Navigate to="/chat" /> : <Login />}
         />
         <Route
-          path="/login"
-          element={authUser ? <Navigate to={"/chat"} /> : <Login />}
-        />
-        <Route
           path="/signup"
           element={authUser ? <Navigate to="/getting-started" /> : <Signup />}
         />
         <Route
           path="/chat"
           element={authUser ? <MainLayout /> : <Navigate to="/" />}
-          element={authUser ? <Navigate to={"/chat"} /> : <Signup />}
         />
-        {/* Not protected for testing */}
         <Route path="/chat" element={<MainLayout />} />
         <Route path="/getting-started" element={<GettingStartedModal />} />
-        {/* <Route
-          path="/chat"
-          element={authUser ? <MainLayout /> : <Navigate to={"/"} />}
-        /> */}
       </>
     )
   );
