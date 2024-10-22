@@ -20,7 +20,7 @@ function useLogIn() {
       }
       console.log("Log In info: 😭", data);
 
-      validateUser(data.token)
+      validateUser(data);
       // localStorage.setItem("authUser", JSON.stringify(data.token));
       // setAuthUser(data.token);
     } catch (error) {

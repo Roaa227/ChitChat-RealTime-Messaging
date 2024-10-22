@@ -31,7 +31,7 @@ const useSignup = () => {
       }
       console.log(data);
 
-      validateUser(data.token);
+      validateUser(data);
       // // Save token:
       // localStorage.setItem("authUser", JSON.stringify(data.token));
       // setAuthUser(data.token);
