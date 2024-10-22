@@ -41,7 +41,7 @@ export const AuthContextProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        authUser, // flag
+        authUser, // User Object and tocken
         setAuthUser, // set flag
         validateUser, // login functionality
         invalidateUser, // logout functionality
