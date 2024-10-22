@@ -16,9 +16,11 @@ export const NameBar = ({ selectedContact, setSelectedContact }) => {
                         <i className={`fa-solid fa-arrow-left mx-2 ${styles.arrow}`}></i>
                     </Link>
                     <div className={styles.circularImage}>
-                        <img src={selectedContact.img} alt={selectedContact.name} className="flex-fill" />
+                        <img src={selectedContact.profilePicture} alt={selectedContact.userName
+} className="flex-fill" />
                     </div>
-                    {selectedContact.name}
+                    {selectedContact.userName
+}
                 </span>
             </div>
         </nav>
